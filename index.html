@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <h1 style="margin: auto;" class="is-size-3 has-text-weight-medium">Vue Blackjack Game</h1>
+        </nav>
+        <div class="m-auto has-text-centered">
+            <h2 class="is-size-4 has-text-danger has-text-weight-bold">Dealer:</h2>
+            <!-- Ger två kort till Dealer och sätter kortets färg till att vara rött/svart beroende på vilken suit den har -->
+            <div v-for="card in dealerHand" class="card"
+                v-bind:style="card.suit === 'HEARTS' || card.suit === 'DIAMONDS' ? 'color: red' : 'color: black'">
+                <span class="suit-top has-text-left">{{ prettyCard(card) }}</span>
+                <h1 class="suit-center">{{ prettyCard(card) }}</h1>
+                <span class="suit-bottom">{{ prettyCard(card) }}</span>
+            </div>
+            <h3 class="is-size-4 has-text-danger">Dealer Score: {{ score(dealerHand) }}</h3>
+            <br>
+            <h2 class="is-size-4 has-text-weight-bold has-text-success">Player:</h2>
+            <!-- Ger två kort till Player och sätter kortets färg till att vara rött/svart beroende på vilken suit den har -->
+            <div v-for="card in playerHand" class="card"
+                v-bind:style="card.suit === 'HEARTS' || card.suit === 'DIAMONDS' ? 'color: red' : 'color: black'">
+                <span class="suit-top has-text-left">{{ prettyCard(card) }}</span>
+                <h1 class="suit-center">{{ prettyCard(card) }}</h1>
+                <span class="suit-bottom">{{ prettyCard(card) }}</span>
+            </div>
+            <div>
+                <h3 class="is-size-4 has-text-success">Player Score: {{ score(playerHand) }}</h3>
+                <br>
+                <!-- Om Player har 21 i score ska den inte kunna be om mer kort och måste istället välja att stanna -->
+                <input class="button is-success" v-bind:disabled="score(playerHand) > 20 || disabled === true"
+                    @click="dealCard(draw(deck), true)" type="button" value="Hit">
+                <input class="button" v-bind:disabled="disabled === true" type="button" value="Stay" v-on:click="stop">
+                <input class="button is-danger" type="button" value="Reset" v-on:click="reset">
+            </div>
+            <br>
+            <h2 class="is-size-3">{{ winner }}</h2>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

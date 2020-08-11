@@ -1,0 +1,43 @@
+.container {
+    margin-left: 40px;
+}
+
+.card {
+    margin: 15px;
+    width: 120px;
+    height: 170px;
+    display: inline-block !important;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+}
+
+.suit-center {
+    text-align: center;
+    margin-top: 38px;
+    font-size: 32px;
+}
+
+.suit-top {
+    padding-left: 5px;
+    width: 100%;
+    display: block;
+}
+
+.suit-bottom {
+    position: absolute;
+    bottom: 0px;
+    text-align: left;
+    transform: rotate(180deg);
+    padding-left: 5px;
+    width: 100%;
+    display: block;
+}
+
+.red {
+    color: #FF0000;
+}
+
+.black {
+    color: #000;
+}
